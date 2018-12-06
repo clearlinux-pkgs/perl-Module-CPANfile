@@ -110,13 +110,13 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.0/Module/CPANfile.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Module/CPANfile/Environment.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Module/CPANfile/Prereq.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Module/CPANfile/Prereqs.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Module/CPANfile/Requirement.pm
-/usr/lib/perl5/vendor_perl/5.28.0/cpanfile-faq.pod
-/usr/lib/perl5/vendor_perl/5.28.0/cpanfile.pod
+/usr/lib/perl5/vendor_perl/5.28.1Module/CPANfile.pm
+/usr/lib/perl5/vendor_perl/5.28.1Module/CPANfile/Environment.pm
+/usr/lib/perl5/vendor_perl/5.28.1Module/CPANfile/Prereq.pm
+/usr/lib/perl5/vendor_perl/5.28.1Module/CPANfile/Prereqs.pm
+/usr/lib/perl5/vendor_perl/5.28.1Module/CPANfile/Requirement.pm
+/usr/lib/perl5/vendor_perl/5.28.1cpanfile-faq.pod
+/usr/lib/perl5/vendor_perl/5.28.1cpanfile.pod
 
 %files bin
 %defattr(-,root,root,-)
