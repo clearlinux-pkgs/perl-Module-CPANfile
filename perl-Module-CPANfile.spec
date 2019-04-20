@@ -4,16 +4,13 @@
 #
 Name     : perl-Module-CPANfile
 Version  : 1.1004
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/M/MI/MIYAGAWA/Module-CPANfile-1.1004.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/M/MI/MIYAGAWA/Module-CPANfile-1.1004.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmodule-cpanfile-perl/libmodule-cpanfile-perl_1.1004-1.debian.tar.xz
-Summary  : 'Parse cpanfile'
+Summary  : Module-CPANfile - Parse cpanfile
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-Module-CPANfile-bin = %{version}-%{release}
-Requires: perl-Module-CPANfile-license = %{version}-%{release}
-Requires: perl-Module-CPANfile-man = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(File::pushd)
 
@@ -31,48 +28,12 @@ my $merged_prereqs = $file->prereqs_with(@identifiers); # CPAN::Meta::Prereqs
 
 $file->merge_meta('MYMETA.json');
 
-%package bin
-Summary: bin components for the perl-Module-CPANfile package.
-Group: Binaries
-Requires: perl-Module-CPANfile-license = %{version}-%{release}
-Requires: perl-Module-CPANfile-man = %{version}-%{release}
-
-%description bin
-bin components for the perl-Module-CPANfile package.
-
-
-%package dev
-Summary: dev components for the perl-Module-CPANfile package.
-Group: Development
-Requires: perl-Module-CPANfile-bin = %{version}-%{release}
-Provides: perl-Module-CPANfile-devel = %{version}-%{release}
-
-%description dev
-dev components for the perl-Module-CPANfile package.
-
-
-%package license
-Summary: license components for the perl-Module-CPANfile package.
-Group: Default
-
-%description license
-license components for the perl-Module-CPANfile package.
-
-
-%package man
-Summary: man components for the perl-Module-CPANfile package.
-Group: Default
-
-%description man
-man components for the perl-Module-CPANfile package.
-
-
 %prep
 %setup -q -n Module-CPANfile-1.1004
 cd ..
 %setup -q -T -D -n Module-CPANfile-1.1004 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Module-CPANfile-1.1004/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Module-CPANfile-1.1004/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -98,6 +59,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Module-CPANfile
 cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Module-CPANfile/LICENSE
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Module-CPANfile/deblicense_copyright
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -110,30 +72,3 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.1/Module/CPANfile.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Module/CPANfile/Environment.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Module/CPANfile/Prereq.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Module/CPANfile/Prereqs.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Module/CPANfile/Requirement.pm
-/usr/lib/perl5/vendor_perl/5.28.1/cpanfile-faq.pod
-/usr/lib/perl5/vendor_perl/5.28.1/cpanfile.pod
-
-%files bin
-%defattr(-,root,root,-)
-/usr/bin/cpanfile-dump
-/usr/bin/mymeta-cpanfile
-
-%files dev
-%defattr(-,root,root,-)
-/usr/share/man/man3/Module::CPANfile.3
-/usr/share/man/man3/cpanfile-faq.3
-/usr/share/man/man3/cpanfile.3
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Module-CPANfile/LICENSE
-
-%files man
-%defattr(0644,root,root,0755)
-/usr/share/man/man1/cpanfile-dump.1
-/usr/share/man/man1/mymeta-cpanfile.1
