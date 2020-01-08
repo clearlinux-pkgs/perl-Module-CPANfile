@@ -4,16 +4,17 @@
 #
 Name     : perl-Module-CPANfile
 Version  : 1.1004
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/M/MI/MIYAGAWA/Module-CPANfile-1.1004.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/M/MI/MIYAGAWA/Module-CPANfile-1.1004.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmodule-cpanfile-perl/libmodule-cpanfile-perl_1.1004-1.debian.tar.xz
-Summary  : Module-CPANfile - Parse cpanfile
+Summary  : 'Parse cpanfile'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Module-CPANfile-bin = %{version}-%{release}
 Requires: perl-Module-CPANfile-license = %{version}-%{release}
 Requires: perl-Module-CPANfile-man = %{version}-%{release}
+Requires: perl-Module-CPANfile-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(File::pushd)
 
@@ -67,18 +68,28 @@ Group: Default
 man components for the perl-Module-CPANfile package.
 
 
+%package perl
+Summary: perl components for the perl-Module-CPANfile package.
+Group: Default
+Requires: perl-Module-CPANfile = %{version}-%{release}
+
+%description perl
+perl components for the perl-Module-CPANfile package.
+
+
 %prep
 %setup -q -n Module-CPANfile-1.1004
-cd ..
-%setup -q -T -D -n Module-CPANfile-1.1004 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libmodule-cpanfile-perl_1.1004-1.debian.tar.xz
+cd %{_builddir}/Module-CPANfile-1.1004
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Module-CPANfile-1.1004/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Module-CPANfile-1.1004/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -88,7 +99,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -97,8 +108,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Module-CPANfile
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Module-CPANfile/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Module-CPANfile/deblicense_copyright
+cp %{_builddir}/Module-CPANfile-1.1004/LICENSE %{buildroot}/usr/share/package-licenses/perl-Module-CPANfile/e2bf2b3ac4866a03601003b6ce3da0658f45b720
+cp %{_builddir}/Module-CPANfile-1.1004/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Module-CPANfile/7f14f95fb6443ecb2ab0f2d92f8c172c836007ec
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -111,13 +122,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Module/CPANfile.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Module/CPANfile/Environment.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Module/CPANfile/Prereq.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Module/CPANfile/Prereqs.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Module/CPANfile/Requirement.pm
-/usr/lib/perl5/vendor_perl/5.28.2/cpanfile-faq.pod
-/usr/lib/perl5/vendor_perl/5.28.2/cpanfile.pod
 
 %files bin
 %defattr(-,root,root,-)
@@ -132,10 +136,20 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Module-CPANfile/LICENSE
-/usr/share/package-licenses/perl-Module-CPANfile/deblicense_copyright
+/usr/share/package-licenses/perl-Module-CPANfile/7f14f95fb6443ecb2ab0f2d92f8c172c836007ec
+/usr/share/package-licenses/perl-Module-CPANfile/e2bf2b3ac4866a03601003b6ce3da0658f45b720
 
 %files man
 %defattr(0644,root,root,0755)
 /usr/share/man/man1/cpanfile-dump.1
 /usr/share/man/man1/mymeta-cpanfile.1
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Module/CPANfile.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Module/CPANfile/Environment.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Module/CPANfile/Prereq.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Module/CPANfile/Prereqs.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Module/CPANfile/Requirement.pm
+/usr/lib/perl5/vendor_perl/5.30.1/cpanfile-faq.pod
+/usr/lib/perl5/vendor_perl/5.30.1/cpanfile.pod
