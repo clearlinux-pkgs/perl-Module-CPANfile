@@ -4,7 +4,7 @@
 #
 Name     : perl-Module-CPANfile
 Version  : 1.1004
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/M/MI/MIYAGAWA/Module-CPANfile-1.1004.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/M/MI/MIYAGAWA/Module-CPANfile-1.1004.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmodule-cpanfile-perl/libmodule-cpanfile-perl_1.1004-1.debian.tar.xz
@@ -109,7 +109,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Module-CPANfile
 cp %{_builddir}/Module-CPANfile-1.1004/LICENSE %{buildroot}/usr/share/package-licenses/perl-Module-CPANfile/e2bf2b3ac4866a03601003b6ce3da0658f45b720
-cp %{_builddir}/Module-CPANfile-1.1004/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Module-CPANfile/7f14f95fb6443ecb2ab0f2d92f8c172c836007ec
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Module-CPANfile/7f14f95fb6443ecb2ab0f2d92f8c172c836007ec
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -146,10 +146,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Module/CPANfile.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Module/CPANfile/Environment.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Module/CPANfile/Prereq.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Module/CPANfile/Prereqs.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Module/CPANfile/Requirement.pm
-/usr/lib/perl5/vendor_perl/5.30.1/cpanfile-faq.pod
-/usr/lib/perl5/vendor_perl/5.30.1/cpanfile.pod
+/usr/lib/perl5/vendor_perl/5.30.2/Module/CPANfile.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Module/CPANfile/Environment.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Module/CPANfile/Prereq.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Module/CPANfile/Prereqs.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Module/CPANfile/Requirement.pm
+/usr/lib/perl5/vendor_perl/5.30.2/cpanfile-faq.pod
+/usr/lib/perl5/vendor_perl/5.30.2/cpanfile.pod
