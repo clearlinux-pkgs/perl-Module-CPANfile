@@ -4,7 +4,7 @@
 #
 Name     : perl-Module-CPANfile
 Version  : 1.1004
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/M/MI/MIYAGAWA/Module-CPANfile-1.1004.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/M/MI/MIYAGAWA/Module-CPANfile-1.1004.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmodule-cpanfile-perl/libmodule-cpanfile-perl_1.1004-1.debian.tar.xz
@@ -146,10 +146,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.2/Module/CPANfile.pm
-/usr/lib/perl5/vendor_perl/5.30.2/Module/CPANfile/Environment.pm
-/usr/lib/perl5/vendor_perl/5.30.2/Module/CPANfile/Prereq.pm
-/usr/lib/perl5/vendor_perl/5.30.2/Module/CPANfile/Prereqs.pm
-/usr/lib/perl5/vendor_perl/5.30.2/Module/CPANfile/Requirement.pm
-/usr/lib/perl5/vendor_perl/5.30.2/cpanfile-faq.pod
-/usr/lib/perl5/vendor_perl/5.30.2/cpanfile.pod
+/usr/lib/perl5/vendor_perl/5.30.3/Module/CPANfile.pm
+/usr/lib/perl5/vendor_perl/5.30.3/Module/CPANfile/Environment.pm
+/usr/lib/perl5/vendor_perl/5.30.3/Module/CPANfile/Prereq.pm
+/usr/lib/perl5/vendor_perl/5.30.3/Module/CPANfile/Prereqs.pm
+/usr/lib/perl5/vendor_perl/5.30.3/Module/CPANfile/Requirement.pm
+/usr/lib/perl5/vendor_perl/5.30.3/cpanfile-faq.pod
+/usr/lib/perl5/vendor_perl/5.30.3/cpanfile.pod
